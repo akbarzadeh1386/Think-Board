@@ -56,9 +56,7 @@ export default function CreateNote({ onCreated }: Props) {
 
       {success && (
         <div className="tb-successWrap">
-          <div className="tb-successBanner tb-confetti">
-            ✅ Your note has been created.
-          </div>
+          <div className="tb-successBanner tb-confetti">✅ Your note has been created.</div>
         </div>
       )}
 
