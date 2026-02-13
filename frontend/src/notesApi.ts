@@ -37,7 +37,10 @@ export async function getNotes(): Promise<Note[]> {
   return arr.map(normalizeNote).filter((n) => n._id);
 }
 
-export async function createNote(payload: { title: string; description: string }) {
+export async function createNote(payload: {
+  title: string;
+  description: string;
+}) {
   const res = await api.post("/notes", {
     title: payload.title,
     description: payload.description,
@@ -46,4 +49,8 @@ export async function createNote(payload: { title: string; description: string }
     text: payload.description,
   });
   return res.data;
+}
+
+export async function deleteNote(id: string) {
+  await api.delete(`/notes/${id}`);
 }
