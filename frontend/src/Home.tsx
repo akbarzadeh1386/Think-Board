@@ -56,8 +56,16 @@ export default function Home({ search, refreshKey }: Props) {
     <div className="tb-page">
       <div className="tb-pageHead">
         <h2 className="tb-title">Notes</h2>
-        <button className="tb-secondaryBtn" onClick={fetchNotes}>
-          Refresh
+
+        <button className="tb-secondaryBtn" onClick={fetchNotes} disabled={loading}>
+          {loading ? (
+            <span className="tb-btnInline">
+              <span className="tb-miniSpinner" />
+              Loading...
+            </span>
+          ) : (
+            "Refresh"
+          )}
         </button>
       </div>
 
@@ -83,7 +91,11 @@ export default function Home({ search, refreshKey }: Props) {
       {!loading && !error && filtered.length > 0 && (
         <div className="tb-grid">
           {filtered.map((note) => (
-            <NoteCard key={note._id} note={note} />
+            <NoteCard
+              key={note._id}
+              note={note}
+              onDeleted={(id) => setNotes((prev) => prev.filter((n) => n._id !== id))}
+            />
           ))}
         </div>
       )}
