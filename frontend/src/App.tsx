@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./Header";
-import Home from "./Home";
-import CreateNote from "./CreateNote";
+import { BrowserRouter } from "react-router-dom";
+import Header from "./components/Header";
+import AppRouter from "./router/AppRouter";
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -15,20 +14,15 @@ export default function App() {
       <Header search={search} onSearchChange={setSearch} />
 
       <main className="tb-main">
-        <Routes>
-          <Route path="/" element={<Home search={search} refreshKey={refreshKey} />} />
-          <Route
-            path="/create"
-            element={
-              <CreateNote
-                onCreated={() => {
-                  setSearch("");
-                  bump();
-                }}
-              />
-            }
-          />
-        </Routes>
+        <AppRouter
+          search={search}
+          refreshKey={refreshKey}
+          onCreated={() => {
+            setSearch("");
+            bump();
+          }}
+          onSaved={bump}
+        />
       </main>
     </BrowserRouter>
   );

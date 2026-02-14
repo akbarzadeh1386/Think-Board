@@ -51,3 +51,22 @@ export async function createNote(payload: { title: string; description: string }
 export async function deleteNote(id: string) {
   await api.delete(`/notes/${id}`);
 }
+
+export async function updateNote(id: string, payload: { title: string; description: string }) {
+  const body = {
+    title: payload.title,
+    description: payload.description,
+    content: payload.description,
+    body: payload.description,
+    text: payload.description,
+  };
+
+  
+  try {
+    const res = await api.put(`/notes/${id}`, body);
+    return res.data;
+  } catch {
+    const res = await api.patch(`/notes/${id}`, body);
+    return res.data;
+  }
+}
