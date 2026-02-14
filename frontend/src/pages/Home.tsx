@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { getNotes, type Note } from "./notesApi";
-import NoteCard from "./NoteCard";
+import { getNotes, type Note } from "../api/notesApi";
+import NoteCard from "../components/NoteCard";
 
 type Props = { search: string; refreshKey: number };
 
@@ -38,7 +38,7 @@ export default function Home({ search, refreshKey }: Props) {
 
   useEffect(() => {
     fetchNotes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [refreshKey]);
 
   const filtered = useMemo(() => {

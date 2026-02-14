@@ -13,6 +13,10 @@ body {
   color: #030303;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .tb-header {
   padding: 20px;
 }
@@ -23,6 +27,7 @@ body {
 
   display: grid;
   grid-template-columns: auto 1fr auto;
+  grid-template-areas: "logo search btn";
   align-items: center;
   gap: 18px;
 
@@ -40,6 +45,7 @@ body {
 /* Logo */
 
 .tb-header__logo {
+  grid-area: logo;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -65,6 +71,7 @@ body {
 /* Search */
 
 .tb-header__search {
+  grid-area: search;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -99,6 +106,7 @@ body {
 /* Button */
 
 .tb-header__btn {
+  grid-area: btn;
   padding: 12px 18px;
   border-radius: 18px;
   border: none;
@@ -118,6 +126,10 @@ body {
   transform: translateY(-2px);
   background: #030303;
 }
+
+/* =========================
+   LAYOUT
+========================= */
 
 .tb-main {
   max-width: 1100px;
@@ -150,7 +162,9 @@ body {
   font-weight: 600;
 }
 
-/*CARD*/
+/* =========================
+   CARD / GRID
+========================= */
 
 .tb-card {
   background: rgba(212, 201, 190, 0.55);
@@ -170,19 +184,30 @@ body {
   gap: 14px;
 }
 
-/* NOTE CARD */
+/* =========================
+   NOTE CARD
+========================= */
 
 .tb-noteCard {
+  position: relative;
+  z-index: 0;
+
   background: rgba(212, 201, 190, 0.55);
   border: 1px solid rgba(18, 52, 88, 0.15);
   border-radius: 20px;
   padding: 16px;
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.tb-noteCard--menuOpen {
+  z-index: 60;
 }
 
 .tb-noteHead {
@@ -223,7 +248,9 @@ body {
   color: rgba(3, 3, 3, 0.55);
 }
 
-/* NOTE MENU */
+/* =========================
+   NOTE MENU
+========================= */
 
 .tb-noteMenuWrap {
   position: relative;
@@ -265,7 +292,7 @@ body {
   padding: 8px;
 
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  z-index: 50;
+  z-index: 80;
 }
 
 .tb-noteMenuItem {
@@ -304,7 +331,9 @@ body {
   place-items: center;
 }
 
-/* FORM */
+/* =========================
+   FORM
+========================= */
 
 .tb-label {
   display: grid;
@@ -330,7 +359,9 @@ body {
   box-shadow: 0 0 0 3px rgba(18, 52, 88, 0.1);
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
 .tb-primaryBtn {
   border: none;
@@ -368,7 +399,15 @@ body {
   cursor: not-allowed;
 }
 
-/* ERROR / ALERT */
+.tb-btnInline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* =========================
+   ERROR / ALERT / EMPTY
+========================= */
 
 .tb-alert {
   border-radius: 20px;
@@ -398,8 +437,6 @@ body {
   font-weight: 900;
 }
 
-/* EMPTY */
-
 .tb-emptyTitle {
   margin: 0;
   font-weight: 900;
@@ -412,7 +449,9 @@ body {
   font-weight: 600;
 }
 
-/* LOADER */
+/* =========================
+   LOADER
+========================= */
 
 .tb-spinner {
   width: 18px;
@@ -432,19 +471,15 @@ body {
   animation: tb-spin 0.9s linear infinite;
 }
 
-.tb-btnInline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
 @keyframes tb-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* HOME SKELETON */
+/* =========================
+   HOME SKELETON
+========================= */
 
 .tb-skeletonCard {
   background: rgba(212, 201, 190, 0.45);
@@ -475,11 +510,17 @@ body {
 }
 
 @keyframes tb-shimmer {
-  0% { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-/* CREATE NOTE overlay/banner */
+/* =========================
+   CREATE NOTE overlay/banner
+========================= */
 
 .tb-formWrap {
   position: relative;
@@ -535,7 +576,7 @@ body {
   content: "";
   position: absolute;
   inset: -40px;
-  background: radial-gradient(circle, rgba(18,52,88,.18) 0 2px, transparent 3px)
+  background: radial-gradient(circle, rgba(18, 52, 88, 0.18) 0 2px, transparent 3px)
     0 0 / 18px 18px;
   opacity: 0.25;
   transform: rotate(10deg);
@@ -543,13 +584,18 @@ body {
 }
 
 @keyframes tb-float {
-  0%, 100% { transform: rotate(10deg) translateY(0); }
-  50% { transform: rotate(10deg) translateY(10px); }
+  0%,
+  100% {
+    transform: rotate(10deg) translateY(0);
+  }
+  50% {
+    transform: rotate(10deg) translateY(10px);
+  }
 }
 
-/* RESPONSIVE */
-
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 900px) {
   .tb-main {
@@ -564,24 +610,10 @@ body {
     padding: 14px;
     gap: 12px;
 
-    /* دو ردیف: بالا لوگو + دکمه / پایین سرچ */
     grid-template-columns: 1fr auto;
     grid-template-areas:
       "logo btn"
       "search search";
-  }
-
-  .tb-header__logo {
-    grid-area: logo;
-  }
-
-  .tb-header__btn {
-    grid-area: btn;
-    justify-self: end;
-  }
-
-  .tb-header__search {
-    grid-area: search;
   }
 
   .tb-grid {
@@ -612,7 +644,6 @@ body {
     padding: 12px;
   }
 
-  /* منوی سه‌نقطه از صفحه بیرون نزنه */
   .tb-noteMenu {
     right: 0;
     left: auto;

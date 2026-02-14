@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createNote } from "./notesApi";
+import { createNote } from "../api/notesApi";
 
 type Props = { onCreated: () => void };
 

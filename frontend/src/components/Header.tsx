@@ -11,13 +11,11 @@ export default function Header({ search, onSearchChange }: HeaderProps) {
   return (
     <header className="tb-header">
       <div className="tb-header__inner">
-        {/* LEFT - LOGO */}
         <div className="tb-header__logo" onClick={() => navigate("/")}>
           <div className="tb-header__logoIcon">🧠</div>
           <span className="tb-header__logoText">Think Board</span>
         </div>
 
-        {/* CENTER - SEARCH */}
         <div className="tb-header__search">
           <span className="tb-header__searchIcon">⌕</span>
           <input
@@ -29,7 +27,6 @@ export default function Header({ search, onSearchChange }: HeaderProps) {
           />
         </div>
 
-        {/* RIGHT - CREATE BUTTON */}
         <button className="tb-header__btn" onClick={() => navigate("/create")}>
           New Note +
         </button>
